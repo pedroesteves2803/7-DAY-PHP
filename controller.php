@@ -1,6 +1,18 @@
 <?php 
 
 function do_register(){
+    if($_POST['person']??false){
+        register_post();
+    }else{
+        register_get();
+    }
+}
+
+function register_get(){
+    render_view('register');
+}
+
+function register_post(){
     $validation_errors  = validate_registers($_POST['person']);
 
     if(count($validation_errors) == 0){
@@ -22,11 +34,16 @@ function do_register(){
 
         render_view('register', $messages);
     }
-
 }
 
 function do_login(){
-    render_view('login');
+    $messages = [];
+    switch($_GET['from']){
+        case 'register':
+            $messages['success'] = "Você ainda precisa confirmar o email!";
+        break;
+    }
+    render_view('login',$messages);
 }
 
 function do_not_found(){
