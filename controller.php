@@ -20,12 +20,11 @@ function register_post(){
         if(!isset($_POST['person'])){
             return render_view('register');
         }
-    
         unset($_POST['person']['password-confirm']);
     
         crud_create($_POST['person']);
     
-        header('location: http://localhost:4242/?page=login');
+        header("Location: /?page=login&from=register");
     }else{
 
         $messages = [
@@ -38,7 +37,7 @@ function register_post(){
 
 function do_login(){
     $messages = [];
-    switch($_GET['from']){
+    switch(isset($_GET['from'])){
         case 'register':
             $messages['success'] = "Você ainda precisa confirmar o email!";
         break;

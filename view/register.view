@@ -15,17 +15,21 @@
 
         {{success}}
         <label for="nome">Nome</label>
-        <input type="text" name="person[name]" required>
-        <span class="mensagem-erro">Mensagem de Erro</span>
+        <input type="text" name="person[name]" value="{{value_name}}" required>
+        {{error_name}}
+
         <label for="email">E-mail</label>
-        <input type="email" name="person[email]" required>
+        <input type="email" name="person[email]" value="{{value_email}}" required>
         {{error_email}}
+
         <label for="senha">Senha</label>
-        <input type="password" name="person[password]" required>
+        <input type="password" name="person[password]" value="{{value_password}}" required>
         {{error_password}}
+
         <label for="repita-senha">Repita Senha</label>
-        <input type="password" name="person[password-confirm]" required>
+        <input type="password" name="person[password-confirm]" value="{{value_password_confirm}}" required>
          {{error_password_confirm}}
+         
         <input type="submit" value="Salvar">
 
     </form>
