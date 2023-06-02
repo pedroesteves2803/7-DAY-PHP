@@ -20,10 +20,21 @@ function register_post(){
         if(!isset($_POST['person'])){
             return render_view('register');
         }
+
+        $_POST['person']['mail_validation'] = false;
+
         unset($_POST['person']['password-confirm']);
     
         crud_create($_POST['person']);
-    
+
+        $email = $_POST['person']['email'];
+
+        $hash = ssl_crypt($email);
+
+        $url = APP_URL."?page=mail-validation&token=".$hash;
+
+        send_mail($email,"Ative a conta",$url);    
+
         header("Location: /?page=login&from=register");
     }else{
 
@@ -43,6 +54,10 @@ function do_login(){
         break;
     }
     render_view('login',$messages);
+}
+
+function mail_validation(){
+    echo $_GET['token'];
 }
 
 function do_not_found(){

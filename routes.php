@@ -9,6 +9,10 @@ switch ($page) {
         do_login();
         break;
 
+    case 'mail-validation':
+        mail_validation();
+        break;
+
     default:
        do_not_found();
         break;
